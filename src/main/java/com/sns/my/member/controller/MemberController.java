@@ -35,21 +35,6 @@ public class MemberController {
         return "/loginform";
     }
 
-    @PostMapping("/login")
-    public String checkLogin(@RequestParam("username") String username,
-                             @RequestParam("password") String password,
-                             HttpSession session){
-        Member member = memberService.findByUserName(username).get();
-        if( member == null || !member.getPassword().equals(password)){
-            return "redirect:/login";
-        }
-        else{
-            session.setAttribute("member", member);
-            return "redirect:/main";
-
-        }
-    }
-
     @GetMapping("/register")
     public String register(){
         return "/registerform";
